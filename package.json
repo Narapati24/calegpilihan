@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
+  },
+  "scripts": {
+    "start": "npx tailwindcss -i ./asset/css/input.css -o ./asset/css/index.css --watch"
+  },
+  "dependencies": {
+    "bootstrap-icons": "^1.11.0"
+  }
+}
