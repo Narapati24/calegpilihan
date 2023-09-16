@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./*.{html,php}", "./src/**/*.{html,php}"],
+  content: ["./*.{html,php}", "./src/**/*.{html,php}",
+            "./node_modules/tw-elements/dist/js/**/*.js",],
   theme: {
     container: {
       center: true,
@@ -13,6 +14,7 @@ module.exports = {
         body: "#F0F2F9",
         main: "#00BCF1",
         "blue": "#4082BF",
+        "light-blue": "#42A4FF",
         "gray": "#D9D9D9",
         "light-gray": "#F9F6EE"
       },
@@ -26,5 +28,6 @@ module.exports = {
       },
     },
   },
-  plugins: ["prettier-plugin-tailwindcss"],
+  plugins: ["prettier-plugin-tailwindcss",
+            require("tw-elements/dist/plugin.cjs")],
 };

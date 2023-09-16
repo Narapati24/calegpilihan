@@ -6,6 +6,7 @@
     "start": "npx tailwindcss -i ./asset/css/input.css -o ./asset/css/index.css --watch"
   },
   "dependencies": {
-    "bootstrap-icons": "^1.11.0"
+    "bootstrap-icons": "^1.11.0",
+    "tw-elements": "^1.0.0"
   }
 }
