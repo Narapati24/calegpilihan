@@ -748,11 +748,6 @@ html {
   inset: 0px;
 }
 
-.inset-x-\[15\%\] {
-  left: 15%;
-  right: 15%;
-}
-
 .-bottom-\[47px\] {
   bottom: -47px;
 }
@@ -783,10 +778,6 @@ html {
 
 .bottom-1\/2 {
   bottom: 50%;
-}
-
-.bottom-5 {
-  bottom: 1.25rem;
 }
 
 .left-0 {
@@ -1574,6 +1565,14 @@ html {
 
 .w-screen {
   width: 100vw;
+}
+
+.w-\[200px\] {
+  width: 200px;
+}
+
+.w-\[100px\] {
+  width: 100px;
 }
 
 .min-w-0 {
@@ -2611,11 +2610,6 @@ html {
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
-}
-
-.py-5 {
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
 }
 
 .py-6 {
@@ -4823,10 +4817,6 @@ html {
 
   .md\:mb-0 {
     margin-bottom: 0px;
-  }
-
-  .md\:block {
-    display: block;
   }
 
   .md\:flex-row {
