@@ -748,6 +748,11 @@ html {
   inset: 0px;
 }
 
+.inset-x-0 {
+  left: 0px;
+  right: 0px;
+}
+
 .-bottom-\[47px\] {
   bottom: -47px;
 }
@@ -778,6 +783,10 @@ html {
 
 .bottom-1\/2 {
   bottom: 50%;
+}
+
+.bottom-10 {
+  bottom: 2.5rem;
 }
 
 .left-0 {
@@ -1027,6 +1036,21 @@ html {
 .my-\[5px\] {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.mx-10 {
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
 }
 
 .-ml-\[1\.5rem\] {
@@ -1467,6 +1491,10 @@ html {
   width: 1.125rem;
 }
 
+.w-\[100px\] {
+  width: 100px;
+}
+
 .w-\[15\%\] {
   width: 15%;
 }
@@ -1565,14 +1593,6 @@ html {
 
 .w-screen {
   width: 100vw;
-}
-
-.w-\[200px\] {
-  width: 200px;
-}
-
-.w-\[100px\] {
-  width: 100px;
 }
 
 .min-w-0 {
@@ -2424,6 +2444,10 @@ html {
   background-color: rgb(63 63 70 / var(--tw-bg-opacity));
 }
 
+.bg-\[url\(\'\.\.\/img\/main\.jpg\'\)\] {
+  background-image: url('../img/main.jpg');
+}
+
 .bg-\[url\(\'\.\.\/img\/main2\.jpg\'\)\] {
   background-image: url('../img/main2.jpg');
 }
@@ -2440,8 +2464,8 @@ html {
   background-clip: padding-box;
 }
 
-.bg-center {
-  background-position: center;
+.bg-top {
+  background-position: top;
 }
 
 .fill-\[\#afafaf\] {
@@ -2651,10 +2675,6 @@ html {
   padding-bottom: 0px;
 }
 
-.pb-\[150px\] {
-  padding-bottom: 150px;
-}
-
 .pb-\[5px\] {
   padding-bottom: 5px;
 }
@@ -2701,10 +2721,6 @@ html {
 
 .pt-\[0\.37rem\] {
   padding-top: 0.37rem;
-}
-
-.pt-\[650px\] {
-  padding-top: 650px;
 }
 
 .pt-\[6px\] {
