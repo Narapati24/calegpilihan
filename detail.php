@@ -1,18 +1,20 @@
 <?php
 require 'asset/php/array.php';
-require 'asset/php/_header.php'
+require 'asset/php/database.php';
+require 'asset/php/_header.php';
+update();
 ?>
 
 <section class="h-screen text-center text-white bg-[url('../img/bg-main.png')] bg-cover bg-top" id="main">
   <div class="flex justify-between p-2">
-    <img class="w-[30%]" src="asset/img/s14p.png" alt="" />
+    <img class="w-[30%]" src="asset/img/s14p.png" loading="lazy" alt="s14p" />
     <div class="flex justify-end">
       <p class="text-4xl me-2">14</p>
-      <img class="w-[30%]" src="asset/img/Logo_of_the_Democratic_Party_(Indonesia).svg" alt="" />
+      <img class="w-[30%]" src="asset/img/Logo_of_the_Democratic_Party_(Indonesia).svg" loading="lazy" alt="demokrat" />
     </div>
   </div>
   <div class="absolute inset-x-0 bottom-10">
-    <img class="m-auto w-[80%]" src="asset/img/profile2.png" alt="" />
+    <img class="m-auto w-[80%]" src="asset/img/profile2.png" loading="lazy" alt="profile2" />
     <h3>Ayo Kenal Lebih Dekat Dengan</h3>
     <h1 class="text-4xl font-bold">DENNY RUDIANA</h1>
     <h2 class="text-lg font-semibold">CALON ANGGOTA DPRD</h2>
@@ -59,7 +61,7 @@ require 'asset/php/_header.php'
 </section>
 
 <section class="text-center p-10" id="who">
-  <img class="m-auto" src="asset/img/profile.png" alt="" />
+  <img class="m-auto" src="asset/img/profile.png" loading="lazy" alt="profile" />
 
   <h3 class="text-xl font-bold mt-3">Siapa Denny Rudiana ?</h3>
   <?php foreach ($siapaDenny as $s) : ?>
@@ -165,7 +167,7 @@ require 'asset/php/_header.php'
   <?php foreach ($sosmed as $s) : ?>
     <div class="bg-light-blue rounded-full py-2 px-6 w-[90%] m-auto mt-6">
       <a href="<?= $s['link']; ?>" target="_blank" class="flex items-center justify-center mx-3">
-        <img class="rounded-full me-6" src="asset/img/<?= $s['img']; ?>" alt="" width="50" height="50" />
+        <img class="rounded-full me-6" src="asset/img/<?= $s['img']; ?>" loading="lazy" alt="<?= $s['img']; ?>" width="50" height="50" />
         <p class="mt-1">GABUNG SEKARANG</p>
       </a>
     </div>
@@ -183,7 +185,7 @@ require 'asset/php/_header.php'
     <br />
     COBLOS CALEG Nomor Urut 4 ( Empat )
   </h2>
-  <img class="m-auto mt-3 w-[95%]" src="asset/img/Conlos1.jpg" alt="" />
+  <img class="m-auto mt-3 w-[95%]" src="asset/img/Conlos1.jpg" loading="lazy" alt="conlos1" />
 
   <!-- corosel -->
   <div id="carouselExampleCaptions" class="relative" data-te-carousel-init data-te-ride="carousel">
@@ -198,18 +200,18 @@ require 'asset/php/_header.php'
     <div class="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
       <!--First item-->
       <div class="relative float-left -mr-[100%] w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none" data-te-carousel-active data-te-carousel-item style="backface-visibility: hidden">
-        <img src="asset/img/Poster-01.jpg" class="block w-1/2 float-left" alt="..." />
-        <img src="asset/img/Poster-02.jpg" class="block w-1/2 float-left" alt="..." />
+        <img src="asset/img/Poster-01.jpg" class="block w-1/2 float-left" loading="lazy" alt="poster1" />
+        <img src="asset/img/Poster-02.jpg" class="block w-1/2 float-left" loading="lazy" alt="poster2" />
       </div>
       <!--Second item-->
       <div class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none" data-te-carousel-item style="backface-visibility: hidden">
-        <img src="asset/img/Poster-03.jpg" class="block w-1/2 float-left" alt="..." />
-        <img src="asset/img/Poster-04.jpg" class="block w-1/2 float-left" alt="..." />
+        <img src="asset/img/Poster-03.jpg" class="block w-1/2 float-left" loading="lazy" alt="poster3" />
+        <img src="asset/img/Poster-04.jpg" class="block w-1/2 float-left" loading="lazy" alt="poster4" />
       </div>
       <!--Third item-->
       <div class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none" data-te-carousel-item style="backface-visibility: hidden">
-        <img src="asset/img/Poster-05.jpg" class="block w-1/2 float-left" alt="..." />
-        <img src="asset/img/Poster-06.jpg" class="block w-1/2 float-left" alt="..." />
+        <img src="asset/img/Poster-05.jpg" class="block w-1/2 float-left" loading="lazy" alt="poster5" />
+        <img src="asset/img/Poster-06.jpg" class="block w-1/2 float-left" loading="lazy" alt="poster6" />
       </div>
     </div>
 
