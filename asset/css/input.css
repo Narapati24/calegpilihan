@@ -8,9 +8,3 @@
     font-family: 'Roboto', sans-serif;
   }
 }
-@media (min-width: 769px) {
-  /* Aturan CSS yang akan dinonaktifkan di atas resolusi tablet */
-  body {
-    display: none;
-  }
-}

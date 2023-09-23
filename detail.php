@@ -2,12 +2,19 @@
 require 'asset/php/array.php';
 require 'asset/php/database.php';
 require 'asset/php/_header.php';
-update();
-$views = query("SELECT * FROM server WHERE svr_id = 1")[0];
+updateView();
+$views = queryView("SELECT * FROM server WHERE svr_id = 1")[0];
+if (isset($_POST['tombol'])) {
+  $error = insertComment($_POST);
+}
+$commentTotal = query("SELECT * FROM comment");
+$comment = query("SELECT * FROM comment LIMIT 5");
 ?>
 <audio src="asset/audio/Demokrat.mp3" autoplay></audio>
-
-<section class="h-screen text-center text-white bg-[url('../img/bg-main.png')] bg-cover bg-top" id="main">
+<div class="hidden md:block">
+  Hanya bisa buka di hp
+</div>
+<section class="md:hidden h-screen text-center text-white bg-[url('../img/bg-main.jpg')] bg-cover bg-top" id="main">
   <div class="flex justify-between p-2">
     <img class="w-[30%]" src="asset/img/s14p.png" loading="lazy" alt="s14p" />
     <div class="flex justify-end">
@@ -15,8 +22,8 @@ $views = query("SELECT * FROM server WHERE svr_id = 1")[0];
       <img class="w-[30%]" src="asset/img/Logo_of_the_Democratic_Party_(Indonesia).svg" loading="lazy" alt="demokrat" />
     </div>
   </div>
-  <div class="absolute inset-x-0 bottom-10">
-    <img class="m-auto w-[80%]" src="asset/img/profile2.png" loading="lazy" alt="profile2" />
+  <div class="absolute inset-x-0 bottom-10 drop-shadow-lg">
+    <img class="m-auto w-[80%] md:w-[40%]" src="asset/img/profile2.png" loading="lazy" alt="profile2" />
     <h3>Ayo Kenal Lebih Dekat Dengan</h3>
     <h1 class="text-4xl font-bold">DENNY RUDIANA</h1>
     <h2 class="text-lg font-semibold">CALON ANGGOTA DPRD</h2>
@@ -245,27 +252,50 @@ $views = query("SELECT * FROM server WHERE svr_id = 1")[0];
     <b>Calon Anggota DPRD (Kota Bandung)</b> <br />
     berkenan untuk memberikan komentar dukungan
   </p>
-  <form action="" class="m-auto mt-6 text-start w-[90%]">
+  <form method="post" class="m-auto mt-6 text-start w-[90%]">
     <label>Nama <br />
-      <input class="w-full rounded-lg" type="text" /></label>
+      <input name="nama" class="w-full text-black rounded-lg" type="text" /></label>
     <br />
     <label>Komentar <br />
-      <textarea class="w-full rounded-lg" cols="30" rows="10"></textarea>
+      <textarea name="text" class="w-full text-black rounded-lg" cols="30" rows="10"></textarea>
     </label>
     <div class="flex justify-center">
-      <button class="bg-light-blue rounded-lg p-3 mt-2">
+      <button name="tombol" type="submit" class="bg-light-blue rounded-lg p-3 mt-2">
         Kirimkan Komentar
       </button>
     </div>
   </form>
 
-  <div class="flex justify-between mt-10">
+  <?php $no = 1;
+  foreach ($comment as $c) : ?>
+    <div class="<?= $no % 2 == 0 ? 'text-right float-right' : 'text-left'; ?> bg-white text-black p-4 rounded-md max-w-[85%] mt-6">
+      <p class="text-md font-bold"><?= $c['cmt_name']; ?></p>
+      <p class="text-xs"><?= $c['cmt_text']; ?></p>
+    </div>
+    <?php if ($no % 2 == 0) : ?>
+      <div class="clear-both"></div>
+    <?php endif; ?>
+  <?php $no++;
+  endforeach ?>
+
+  <?php if (isset($error)) : ?>
+    <div class="my-3 inline-flex w-full items-center rounded-lg bg-success-100 px-6 py-5 text-base text-success-700" role="alert">
+      <span class="mr-2">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+          <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+        </svg>
+      </span>
+      Data Telah Diterima
+    </div>
+  <?php endif ?>
+
+  <div class="flex justify-between md:justify-around mt-10">
     <div class="flex">
       <svg class="mt-1" xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
         <path fill="white" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM164.1 325.5C182 346.2 212.6 368 256 368s74-21.8 91.9-42.5c5.8-6.7 15.9-7.4 22.6-1.6s7.4 15.9 1.6 22.6C349.8 372.1 311.1 400 256 400s-93.8-27.9-116.1-53.5c-5.8-6.7-5.1-16.8 1.6-22.6s16.8-5.1 22.6 1.6zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
       </svg>
       <div class="text-left ms-2">
-        <p>5000</p>
+        <p><?= count($commentTotal) + 5000; ?></p>
         <p class="text-xs">Dukungan</p>
       </div>
     </div>
@@ -274,7 +304,7 @@ $views = query("SELECT * FROM server WHERE svr_id = 1")[0];
         <path fill="white" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM164.1 325.5C182 346.2 212.6 368 256 368s74-21.8 91.9-42.5c5.8-6.7 15.9-7.4 22.6-1.6s7.4 15.9 1.6 22.6C349.8 372.1 311.1 400 256 400s-93.8-27.9-116.1-53.5c-5.8-6.7-5.1-16.8 1.6-22.6s16.8-5.1 22.6 1.6zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
       </svg>
       <div class="text-left ms-2">
-        <p>5000</p>
+        <p><?= count($commentTotal) + 5000; ?></p>
         <p class="text-xs">Relawan</p>
       </div>
     </div>
@@ -314,9 +344,9 @@ $views = query("SELECT * FROM server WHERE svr_id = 1")[0];
     // If the countdown is over, display a message
     if (distance < 0) {
       clearInterval(x);
-      document.getElementById("days").innerHTML = "EXPIRED";
-      document.getElementById("hours").innerHTML = "";
-      document.getElementById("minutes").innerHTML = "";
+      document.getElementById("days").innerHTML = "0<br>Hari";
+      document.getElementById("hours").innerHTML = "0<br>Jam";
+      document.getElementById("minutes").innerHTML = "0<br>Menit";
     }
   }, 1000);
 </script>
