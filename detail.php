@@ -7,8 +7,21 @@ $views = queryView("SELECT * FROM server WHERE svr_id = 1")[0];
 if (isset($_POST['tombol'])) {
   $error = insertComment($_POST);
 }
+$dukungan = query("SELECT cut_dukungan FROM count")[0];
+$relawan = query("SELECT cut_relawan FROM count")[0];
 $commentTotal = query("SELECT * FROM comment");
 $comment = query("SELECT * FROM comment LIMIT 5");
+
+function generateRandomColor($text)
+{
+  // Hitung hash dari teks (nama pengguna)
+  $hash = crc32($text);
+
+  // Ubah hash ke dalam warna hexadecimal
+  $color = sprintf("#%06X", $hash & 0xFFFFFF);
+
+  return $color;
+}
 ?>
 <audio src="asset/audio/Demokrat.mp3" autoplay></audio>
 <div class="hidden md:block">
@@ -175,7 +188,7 @@ $comment = query("SELECT * FROM comment LIMIT 5");
   <!-- sosmed -->
   <?php foreach ($sosmed as $s) : ?>
     <div class="bg-light-blue rounded-full py-2 px-6 w-[90%] m-auto mt-6">
-      <a href="<?= $s['link']; ?>" target="_blank" class="flex items-center justify-center mx-3">
+      <a href="asset/php/link.php?id=<?= $s['id']; ?>" target="_blank" class="flex items-center justify-center mx-3">
         <img class="rounded-full me-6" src="asset/img/<?= $s['img']; ?>" loading="lazy" alt="<?= $s['img']; ?>" width="50" height="50" />
         <p class="mt-1">GABUNG SEKARANG</p>
       </a>
@@ -267,9 +280,10 @@ $comment = query("SELECT * FROM comment LIMIT 5");
   </form>
 
   <?php $no = 1;
-  foreach ($comment as $c) : ?>
-    <div class="<?= $no % 2 == 0 ? 'text-right float-right' : 'text-left'; ?> bg-white text-black p-4 rounded-md max-w-[85%] mt-6">
-      <p class="text-md font-bold"><?= $c['cmt_name']; ?></p>
+  foreach ($comment as $c) :
+    $color = generateRandomColor($c['cmt_name']); ?>
+    <div class="<?= $no % 2 == 0 ? 'text-right float-right rounded-tl-md' : 'text-left rounded-tr-md'; ?> bg-white text-black p-4 rounded-br-md rounded-bl-md max-w-[85%] mt-6">
+      <p style="color: <?= $color; ?>;" class="text-md font-bold"><?= $c['cmt_name']; ?></p>
       <p class="text-xs"><?= $c['cmt_text']; ?></p>
     </div>
     <?php if ($no % 2 == 0) : ?>
@@ -291,20 +305,22 @@ $comment = query("SELECT * FROM comment LIMIT 5");
 
   <div class="flex justify-between md:justify-around mt-10">
     <div class="flex">
-      <svg class="mt-1" xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+      <svg onclick="ubahData()" class="mt-1" xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
         <path fill="white" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM164.1 325.5C182 346.2 212.6 368 256 368s74-21.8 91.9-42.5c5.8-6.7 15.9-7.4 22.6-1.6s7.4 15.9 1.6 22.6C349.8 372.1 311.1 400 256 400s-93.8-27.9-116.1-53.5c-5.8-6.7-5.1-16.8 1.6-22.6s16.8-5.1 22.6 1.6zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
       </svg>
       <div class="text-left ms-2">
-        <p><?= count($commentTotal); ?></p>
+        <p id="dukungan"><?= count($commentTotal) + $dukungan['cut_dukungan']; ?></p>
         <p class="text-xs">Dukungan</p>
       </div>
     </div>
     <div class="flex">
-      <svg class="mt-1" xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-        <path fill="white" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM164.1 325.5C182 346.2 212.6 368 256 368s74-21.8 91.9-42.5c5.8-6.7 15.9-7.4 22.6-1.6s7.4 15.9 1.6 22.6C349.8 372.1 311.1 400 256 400s-93.8-27.9-116.1-53.5c-5.8-6.7-5.1-16.8 1.6-22.6s16.8-5.1 22.6 1.6zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
-      </svg>
+      <a href="<?= $sosmed[0]['link']; ?>" target="_blank">
+        <svg onclick="ubahDukungan()" class="mt-1" xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+          <path fill="white" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM164.1 325.5C182 346.2 212.6 368 256 368s74-21.8 91.9-42.5c5.8-6.7 15.9-7.4 22.6-1.6s7.4 15.9 1.6 22.6C349.8 372.1 311.1 400 256 400s-93.8-27.9-116.1-53.5c-5.8-6.7-5.1-16.8 1.6-22.6s16.8-5.1 22.6 1.6zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
+        </svg>
+      </a>
       <div class="text-left ms-2">
-        <p><?= count($commentTotal); ?></p>
+        <p id="relawan"><?= $relawan['cut_relawan']; ?></p>
         <p class="text-xs">Relawan</p>
       </div>
     </div>
@@ -320,6 +336,7 @@ $comment = query("SELECT * FROM comment LIMIT 5");
     dilihat <?= $views['svr_count']; ?>
   </p>
 </div>
+<script src="asset/js/updateData.js"></script>
 
 <script>
   // Set the date we're counting down to

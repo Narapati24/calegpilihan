@@ -67,9 +67,16 @@ function insertComment($data)
   exit;
 }
 
+function updateCount($query)
+{
+  $db = conn();
+
+  mysqli_query($db, "UPDATE count SET $query = $query + 1") or die(mysqli_error($db));
+}
+
 function updateView()
 {
   $db = connView();
 
-  mysqli_query($db, 'UPDATE server SET svr_count = svr_count + 1 WHERE svr_name = "dennyrudiana"') or die(mysqli_error($db));
+  mysqli_query($db, "UPDATE server SET svr_count = svr_count + 1 WHERE svr_name = 'dennyrudiana'") or die(mysqli_error($db));
 }

@@ -121,14 +121,17 @@ $misi = [
 
 $sosmed = [
   [
+    'id' => 0,
     'img' => 'whatsapp.png',
     'link' => 'https://chat.whatsapp.com/J9GNCRnQWa2LroSsewMK4T'
   ],
   [
+    'id' => 1,
     'img' => 'instagram.png',
     'link' => 'https://instagram.com/denny_rudiana?igshid=OGQ5ZDc2ODk2ZA=='
   ],
   [
+    'id' => 2,
     'img' => 'facebook.png',
     'link' => 'https://www.facebook.com/kawandennyrudiana?mibextid=ZbWKwL'
   ],
